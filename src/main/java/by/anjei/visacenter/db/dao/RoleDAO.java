@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RoleDAO {
     List<Role> getAllRoles();
-    Role getRoleById();
+    Role getRoleById(Integer id);
     boolean addRole(Role role);
     boolean deleteRole(Role role);
 }
