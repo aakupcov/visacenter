@@ -4,6 +4,11 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+    <welcome-file-list>
+        <welcome-file>/jsp/login.jsp</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>by.anjei.visacenter.servlet.LoginServlet</servlet-class>
@@ -12,5 +17,11 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login.do</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>
+            by.anjei.visacenter.db.util.helper.DBManagerSetup
+        </listener-class>
+    </listener>
 
 </web-app>

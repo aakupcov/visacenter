@@ -1,10 +1,8 @@
 package by.anjei.visacenter.db.util.helper;
 
-import by.anjei.shop.db.daoimplementation.ItemDaoImpl;
-import by.anjei.shop.db.daomodel.Item;
-import by.anjei.shop.db.util.DBManager;
-import by.anjei.shop.db.util.DatabaseConnectionBehavior;
-import by.anjei.shop.db.util.H2DatabaseConnectionBehavior;
+import by.anjei.visacenter.db.util.DBManager;
+import by.anjei.visacenter.db.util.DatabaseConnectionBehavior;
+import by.anjei.visacenter.db.util.PostgresDatabaseConnectionBehavior;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -13,10 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.util.LinkedHashSet;
 import java.util.Properties;
-import java.util.Set;
 
 public class DBManagerSetup implements ServletContextListener {
 	
@@ -42,7 +37,7 @@ public class DBManagerSetup implements ServletContextListener {
 		String dbUrl = properties.getProperty("dbUrl");
         String dbDriver = properties.getProperty("dbDriver");
 		
-		DatabaseConnectionBehavior conB = new H2DatabaseConnectionBehavior(dbUser, dbPassword, dbUrl, dbDriver);
+		DatabaseConnectionBehavior conB = new PostgresDatabaseConnectionBehavior(dbUser, dbPassword, dbUrl, dbDriver);
 		DBManager dbm = new DBManager(conB);
         if (!dbm.isConnected()) {
             if (!dbm.openConnection())
@@ -55,16 +50,7 @@ public class DBManagerSetup implements ServletContextListener {
             }
         }
 
-        try {
-            DBSQLQueries.createDefaultTables(dbm);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ItemDaoImpl itemDao = new ItemDaoImpl(dbm);
-        Set<Item> items = new LinkedHashSet<>(itemDao.getAllItems());
-
         context.setAttribute("dbmanager", dbm);
-        context.setAttribute("items", items);
 	}
 
 	@Override

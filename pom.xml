@@ -14,6 +14,7 @@
   <url>http://www.example.com</url>
 
   <properties>
+    <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
     <h2.version>1.4.197</h2.version>
     <el.api.version>3.0.0</el.api.version>
     <jsp.api.version>2.2</jsp.api.version>
@@ -22,8 +23,8 @@
     <servlet.api.version>3.1.0</servlet.api.version>
     <maven.jetty.version>6.1.10</maven.jetty.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -59,12 +60,11 @@
       <version>${el.api.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>${h2.version}</version>
-    </dependency>
-  </dependencies>
+  <dependency>
+    <groupId>postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>${postgresql.version}</version>
+  </dependency>
 
   <build>
     <finalName>shop</finalName>

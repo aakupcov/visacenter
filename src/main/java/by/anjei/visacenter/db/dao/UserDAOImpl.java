@@ -56,24 +56,16 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addUser(User user) {
         String query = "insert into user (login, password, role_id) values (?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = dbManager.executeQuery(query);
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setInt(3, user.getRoleId());
-            int flag = preparedStatement.executeUpdate();
-            if (flag == -1) {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return true;
+        return executeQuery(user, query);
     }
 
     @Override
     public boolean deleteUser(User user) {
         String query = "delete from user (login, password, role_id) values (?, ?, ?)";
+        return executeQuery(user, query);
+    }
+
+    private boolean executeQuery(User user, String query) {
         try {
             PreparedStatement preparedStatement = dbManager.executeQuery(query);
             preparedStatement.setString(1, user.getLogin());

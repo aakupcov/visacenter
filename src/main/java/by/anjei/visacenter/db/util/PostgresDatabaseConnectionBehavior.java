@@ -3,16 +3,16 @@ package by.anjei.visacenter.db.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class H2DatabaseConnectionBehavior extends DBInfo implements DatabaseConnectionBehavior {
+public class PostgresDatabaseConnectionBehavior extends DBInfo implements DatabaseConnectionBehavior {
 	
 	
 
-	public H2DatabaseConnectionBehavior() {
+	public PostgresDatabaseConnectionBehavior() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public H2DatabaseConnectionBehavior(String dbUser, String dbPassword, String dbUrl, String dbDriver) {
+	public PostgresDatabaseConnectionBehavior(String dbUser, String dbPassword, String dbUrl, String dbDriver) {
 		super(dbUser, dbPassword, dbUrl, dbDriver);
 		// TODO Auto-generated constructor stub
 	}
